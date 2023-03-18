@@ -1,0 +1,164 @@
+<div class="container-fluid" style="margin-top: 50px;">
+
+
+<!-- header-->
+    <section class="about-section text-center"  style="background-image: url('assets/img/Screenshot 2023-03-03 170329.png'); min-height: 500px;">
+        <div class="container px-4 px-lg-5">
+            <div class="d-flex justify-content-center">
+                <div class="text-center" >
+                    <h1 class="mx-auto my-0 text-uppercase" style="margin: 30px;">Event management app</h1>
+                    <!-- <img class="img-fluid" src="assets/img/Screenshot 2023-03-03 170329.png" alt="..." /> -->
+
+                    <a class="btn btn-primary" style="margin-top: 200px;"  href="#event">Upcoming event</a>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+<p id="event"   ></p>
+<!-- events-->
+<section class="projects-section bg-light" >
+   
+    <div class="container mt-5" >
+        <div class="card p-5">
+          <div class="row" >
+            <div class="col-6">
+                <h1 style="text-align: center;">All planified events</h1>
+              <div class="row">
+                <div class="card border-primary m-2" style="max-width: 15rem;" *ngFor="let inf of events">
+                  <div class="card-header">{{inf.eventName}}</div>
+                  <div class="card-body text-primary">
+                    <h4>{{inf.country}}, {{inf.state}}</h4>
+                    <h4 class="card-title">{{inf.eventDate | date}} at {{inf.slot}}</h4>
+                    
+                    <p>
+                      <button mat-icon-button color="primary" (click)="eventDescription(inf)">
+                        <mat-icon>preview</mat-icon>
+                      </button>
+                    
+                    
+                     
+                      
+    
+                      <!-- <button mat-icon-button color="primary" (click)="publishEvent(inf.eventId)">
+                        <mat-icon>visibility</mat-icon>
+                      </button> -->
+                      <!-- <button mat-icon-button color="primary">
+                        <mat-icon>visibility_off</mat-icon>
+                      </button> -->
+                      
+      
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="col-6">
+           
+              <h1 style="text-align: center;"> All planified meetings </h1>
+              <div class="row">
+                <div class="card border-success m-2" style="max-width: 15rem;" *ngFor="let inf of meetings">
+                  <div class="card-header">{{inf.title}}</div>
+                  <div class="card-body text-info">
+                    <h3>{{inf.meetingDay | date}}</h3>
+                    <h4>From {{inf.startTime }} to {{inf.endTime}}</h4>
+                   
+                    
+                    <p>
+                      <button mat-icon-button color="primary"  >
+                        <a href="{{inf.meetingLink}}">
+                          <mat-icon>link</mat-icon>
+                        </a>
+                      </button>
+                      <button mat-icon-button color="primary" (click)="meetingDescription(inf)">
+                        <mat-icon>preview</mat-icon>
+                      </button>
+                     
+                      <!-- <button mat-icon-button color="primary">
+                        <mat-icon>visibility</mat-icon>
+                      </button>
+                      <button mat-icon-button color="primary">
+                        <mat-icon>visibility_off</mat-icon>
+                      </button> -->
+                    
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+   
+</section>
+
+
+<!-- About-->
+<p id="about" ></p>
+<section class="about-section text-center" style="background-color: rgb(105, 105, 105);">
+    <div class="container mt-5 px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-8">
+                
+                
+                <h2 class="text-white-50 mx-auto mt-2 mb-5">As virtual events are now acceptable and will continue after COVID-19, being able to live stream and do hybrid events become a business requirement of the future.
+                    There will come times when a platform's feature set, design, UX/UI, or price point no longer aligns with your business needs, and you will have to build your app, which is much easier than anticipated.
+                    Aware of that we create this live streaming application for scheduled events. 
+                    The app being built can be used for networking events, conferences, and other kinds of small virtual or hybrid events.</h2>
+                
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+
+<!-- Contact-->
+<section class="contact-section bg-black" id="contact">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5">
+            <div class="col-md-4 mb-3 mb-md-0">
+                <div class="card py-4 h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-map-marked-alt text-primary mb-2"></i>
+                        <h4 class="text-uppercase m-0">Address</h4>
+                        <hr class="my-4 mx-auto" />
+                        <div class="small text-black-50">Sicap Baobab, boyCapsi, Villa X13 </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3 mb-md-0">
+                <div class="card py-4 h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-envelope text-primary mb-2"></i>
+                        <h4 class="text-uppercase m-0">Email</h4>
+                        <hr class="my-4 mx-auto" />
+                        <div class="small text-black-50"><a href="#!">livestreamingvirtual@event.com</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3 mb-md-0">
+                <div class="card py-4 h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-mobile-alt text-primary mb-2"></i>
+                        <h4 class="text-uppercase m-0">Phone</h4>
+                        <hr class="my-4 mx-auto" />
+                        <div class="small text-black-50">+221 (77) 836-29-08</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="social d-flex justify-content-center">
+            <a class="mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+            <a class="mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+            <a class="mx-2" href="#!"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</section>
+
+
+<!-- Footer-->
+<footer class="footer bg-dark small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Live streaming virtual event Website 2023</div></footer>
+</div>

@@ -1,0 +1,79 @@
+<div class="container mt-5" style="margin-top: 100px;">
+    <div class="card p-5">
+      <div class="row">
+        <div class="col">
+          <form #eventForm="ngForm" (ngSubmit)="updateEvent()">
+           
+  
+            <input
+              type="text"
+              [(ngModel)]="event.eventName"
+              name="eventName" 
+              id="eventName"
+              placeholder="eventName"
+              class="form-control mb-3"
+            />
+  
+            <input
+              type="text"
+              [(ngModel)]="event.purpose"
+              name="purpose"
+              id="purpose"
+              placeholder="purpose"
+              class="form-control mb-3"
+            />
+  
+            <input
+              type="date"
+              [(ngModel)]="event.eventDate"
+              name="eventDate"
+              id="eventDate"
+              placeholder="event date"
+              class="form-control mb-3"
+            />
+            <input
+            type="time"
+            [(ngModel)]="event.slot"
+            name="slot"
+            id="slot"
+            placeholder="slot"
+            class="form-control mb-3"
+          />
+          <input
+          type="text"
+          [(ngModel)]="event.city"
+          name="city"
+          id="city"
+          placeholder=" city"
+          class="form-control mb-3"
+        />
+        <input
+        type="text"
+        [(ngModel)]="event.state"
+        name="state"
+        id="state"
+        placeholder="state"
+        class="form-control mb-3"
+      />
+      <input
+      type="text"
+      [(ngModel)]="event.country"
+      name="country"
+      id="country"
+      placeholder="country"
+      class="form-control mb-3"
+    />
+      
+  
+            <input
+            type="submit"
+            value="Update"
+            class="btn btn-outline-primary form-control rounded-0"
+             />
+            
+          </form>
+        </div>
+       
+    </div>
+  
+  

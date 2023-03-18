@@ -1,0 +1,95 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Live Streaming virtual event</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <!-- <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/home">Home</a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/admin"
+            *ngIf="userService.roleMatch(['Admin'])"
+            >Admin Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/organizer"
+            *ngIf="userService.roleMatch(['Organizer'])"
+            >Organizer Dashboard</a>
+          </li>
+         
+        </ul>
+        <!-- <button *ngIf="! isLoggedIn()" type="button" class="btn btn-success" routerLink="/login">Login</button> -->
+        <!-- <button *ngIf="isLoggedIn()" type="button" class="btn btn-danger" (click)="logout()" >Logout</button> -->
+      </div>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#event">Event</a></li>
+            <li class="nav-item"><a class="nav-link" href="#about">About</a></li>       
+            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" *ngIf="! isLoggedIn()" routerLink="/login">Login</a></li>
+            <li class="nav-item"><a class="nav-link" *ngIf="! isLoggedIn()" routerLink="/signup">Sign up</a></li>
+            <li class="nav-item"><a class="nav-link" *ngIf="isLoggedIn()" style="cursor: pointer;" (click)="logout()">Logout</a></li>
+        </ul>
+    </div>
+    </div>
+  </nav>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-info" *ngIf="isLoggedIn()" style="margin-top: 50px;" >
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page"  routerLink="/create-event"> Create new event</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page"  routerLink="/schedule-meeting"> Schedule a meeting</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" *ngIf="isAdmin()" routerLink="/createadmin"> Create new admin</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" *ngIf="isAdmin()" routerLink="/profiles"> Manage Profiles </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" *ngIf="isAdmin()" routerLink="/allEvents"> All events</a>
+        </li>
+
+       
+      </ul>
+    </div>
+  </nav>
+  <!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="#page-top">Start Bootstrap</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav> -->
+  <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-info" *ngIf="isLoggedIn()" >
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" *ngIf="isAdmin()" routerLink="/add-new-product">Add new product</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" *ngIf="isAdmin()" routerLink="/showProductDetails">Show product details</a>
+        </li>
+      </ul>
+    </div>
+  </nav> -->

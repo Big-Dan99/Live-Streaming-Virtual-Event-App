@@ -1,0 +1,27 @@
+<div class="container">
+    <h1>List of Users</h1><hr><br><br><br>
+    
+       <table class="table table-secondary table-stripped table-hover table-bordered">
+           <tr class="table-primary">
+             <th>First name</th>
+             <th>Last name</th>
+             <th>Company</th>
+             <th>Position in the company</th>
+             <th>Email</th>
+             <th>Role</th>
+             
+             
+           </tr>
+   
+           <tr class="table-primary" *ngFor="let user of users">
+             <td>{{user.userFirstName}}</td>
+             <td>{{user.userLastName}}</td>
+             <td>{{user.company}}</td>
+             <td>{{user.jobposition }}</td>
+             <td>{{user.userEmail }}</td>
+             <td>{{user.role[0].roleName}}</td>
+            
+            
+           </tr>
+         </table>
+       </div>

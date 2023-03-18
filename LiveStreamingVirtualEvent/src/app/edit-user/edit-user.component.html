@@ -1,0 +1,62 @@
+<div class="container mt-5" style="margin-top: 100px;">
+    <div class="card p-5">
+      <div class="row">
+        <div class="col">
+          <form #signupForm="ngForm" (ngSubmit)="updateUser()">
+            <input
+              type="text"
+              [(ngModel)]="user.userFirstName"
+              name="userFirstName"
+              id="userFirstName"
+              placeholder="user FirstName"
+              class="form-control mb-3"
+            />
+   
+            <input
+              type="text"
+              [(ngModel)]="user.userLastName"
+              name="userLastName"
+              id="userLastName"
+              placeholder="user LastName"
+              class="form-control mb-3"
+            />
+  
+            <input
+              type="text"
+              [(ngModel)]="user.jobposition"
+              name="jobposition"
+              id="jobposition"
+              placeholder="Position in the company"
+              class="form-control mb-3"
+            />
+
+            <input
+            type="text"
+            [(ngModel)]="user.company"
+            name="company"
+            id="company"
+            placeholder="company"
+            class="form-control mb-3"
+          />
+  
+            <!-- <input
+              type="text"
+              [(ngModel)]="user.userPassword"
+              name="userPassword"
+              id="userPassword"
+              placeholder="user Password"
+              class="form-control mb-3"
+            /> -->
+  
+            <input
+            type="submit"
+            value="Edit profile"
+            class="btn btn-outline-primary form-control rounded-0"
+             />
+            
+          </form>
+        </div>
+       
+    </div>
+  
+  
