@@ -14,8 +14,22 @@
               id="userFirstName"
               matInput
               placeholder="user FirstName"
-              class=" mb-3"
+             
+              #fname="ngModel"
+              required maxlength="25" minlength="3"
+             
             />
+            <div *ngIf="fname.invalid && (fname.dirty || fname.touched)"
+                class="alert">
+
+            <div style="color: red;" *ngIf="fname.errors?.['required']">
+                First Name is required.
+            </div>
+            <div style="color: red;" *ngIf="fname.errors?.['minlength']">
+              First Name must be at least 3 characters long.
+            </div>  
+            
+            </div>
               <mat-hint>FirstName</mat-hint>
           </mat-form-field>
           <mat-form-field appearance="outline" style="width: 100%;">
@@ -27,8 +41,22 @@
             id="userLastName"
             matInput
             placeholder="user LastName"
-            class=" mb-3"
+           
+            #lname="ngModel"
+            required maxlength="15" minlength="3"
+            
           />
+          <div *ngIf="lname.invalid && (lname.dirty || lname.touched)"
+                class="alert">
+
+            <div style="color: red;" *ngIf="lname.errors?.['required']">
+                Last Name is required.
+            </div>
+            <div style="color: red;" *ngIf="lname.errors?.['minlength']">
+              Last Name must be at least 3 characters long.
+            </div>  
+            
+            </div>
             <mat-hint>LastName</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline" style="width: 100%;">
@@ -40,8 +68,22 @@
               id="userEmail"
               matInput
               placeholder="user Email"
-              class=" mb-3"
+             
+              [pattern]="mail" 
+              #Email="ngModel"
+             
             />
+            <div *ngIf="Email.invalid && (Email.dirty || Email.touched)"
+            class="alert">
+
+                <div style="color: red;" *ngIf="Email.errors?.['required']">
+                  Email is required.
+                </div>
+                <div style="color: red;" *ngIf="Email.errors?.pattern">
+                    Please enter a valid email 
+                </div>  
+               
+            </div>
           <mat-hint>Email</mat-hint>
       </mat-form-field>
       <mat-form-field appearance="outline" style="width: 100%;">
@@ -53,8 +95,21 @@
             id="jobposition"
             matInput
             placeholder="Position in the company"
-            class=" mb-3"
-          />
+            
+            #jobposition="ngModel"
+            required maxlength="25" minlength="3"
+        />
+        <div *ngIf="jobposition.invalid && (jobposition.dirty || jobposition.touched)"
+              class="alert">
+
+          <div style="color: red;" *ngIf="jobposition.errors?.['required']">
+              Your job position is required.
+          </div>
+          <div style="color: red;" *ngIf="jobposition.errors?.['minlength']">
+            Should be at least 3 characters long.
+          </div>  
+          
+          </div>
         <mat-hint>job position</mat-hint>
     </mat-form-field>
     <mat-form-field appearance="outline" style="width: 100%;">
@@ -66,8 +121,22 @@
       id="company"
       matInput
       placeholder="Company"
-      class=" mb-3"
+      
+      #company="ngModel"
+      required maxlength="25" minlength="3"
+      
     />
+    <div *ngIf="company.invalid && (company.dirty || company.touched)"
+                class="alert">
+
+            <div style="color: red;" *ngIf="company.errors?.['required']">
+                Company's name is required.
+            </div>
+            <div style="color: red;" *ngIf="company.errors?.['minlength']">
+              Should be at least 3 characters long.
+            </div>  
+            
+            </div>
       <mat-hint>company</mat-hint>
   </mat-form-field>
   <mat-form-field appearance="outline" style="width: 100%;">
@@ -79,8 +148,21 @@
     id="userPassword"
     matInput
     placeholder="user Password"
-    class=" mb-3"
+   
+    required maxlength="10" minlength="5"
+    #Password="ngModel"
   />
+  <div *ngIf="Password.invalid && (Password.dirty || Password.touched)"
+  class="alert">
+
+<div style="color: red;" *ngIf="Password.errors?.['required']">
+  Password is required.
+</div>
+<div style="color: red;" *ngIf="Password.errors?.['minlength']">
+  Password must be at least 5 characters long.
+</div>  
+
+</div> 
     <mat-hint>password</mat-hint>
 </mat-form-field>
            
@@ -95,6 +177,7 @@
            
   
             <input
+            [disabled]="Password.invalid || Email.invalid || fname.invalid || lname.invalid || company.invalid || jobposition.invalid "
             type="submit"
             value="Submit"
             class="btn btn-outline-primary form-control rounded-0"

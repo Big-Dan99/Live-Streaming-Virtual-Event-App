@@ -11,6 +11,7 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
+  isValid! : boolean;
   constructor(
     private userService: UserService,
     private userAuthService: UserAuthService,
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
   login(loginForm: NgForm) {
     this.userService.login(loginForm.value).subscribe(
       (response: any) => {
+        this.isValid= true;
         this.userAuthService.setRoles(response.user.role);
         this.userAuthService.setToken(response.jwtToken);
         this.userAuthService.setUserId(response.user.userEmail);
@@ -35,6 +37,7 @@ export class LoginComponent implements OnInit {
         }
       },
       (error) => {
+        this.isValid= false;
         console.log(error);
       }
     );

@@ -57,15 +57,22 @@ export class EventService {
     return this.httpclient.put(`http://localhost:2809/updatEvent/${eventId}`, event);
   }
 
-  public publishEvent( event : Event, eventId: any) : Observable<Object>{
+  // public publishEvent( event : Event, eventId: any) : Observable<Object>{
+  //   let param = new HttpParams();
+  //   param = param.set('publish', event.publish);
+  //   return this.httpclient.post(`http://localhost:2809/publishEvent/${eventId}`, param , {responseType: 'json'});
+  // }
+
+  public publishEvent( event : any, eventId: any) : Observable<Object>{
     let param = new HttpParams();
-    param = param.set('publish', event.publish);
-    return this.httpclient.post(`http://localhost:2809/publishEvent/${eventId}`, param, {responseType: 'json'});
+    param = param.set('publish', event);
+    return this.httpclient.post(`http://localhost:2809/publishEvent/${eventId}`, param , {responseType: 'json'});
   }
   
-  public publishMeeting( meeting : Meeting, meetingId: any) : Observable<Object>{
+  
+  public publishMeeting( meeting : any, meetingId: any) : Observable<Object>{
     let param = new HttpParams();
-    param = param.set('publish', meeting.publish);
+    param = param.set('publish', meeting);
     return this.httpclient.post(`http://localhost:2809/publishMeeting/${meetingId}`, param, {responseType: 'json'});
   }
 

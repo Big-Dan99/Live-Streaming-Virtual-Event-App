@@ -1,8 +1,9 @@
 <div class="container">
     <h1>List of Users</h1><hr><br><br><br>
     
-       <table class="table table-secondary table-stripped table-hover table-bordered">
-           <tr class="table-primary">
+       <table class="table table-secondary table-striped table-hover table-bordered my-2 align-middle">
+        <thead>
+          <tr class="table-primary">
              <th>First name</th>
              <th>Last name</th>
              <th>Company</th>
@@ -12,8 +13,11 @@
              
              
            </tr>
-   
-           <tr class="table-primary" *ngFor="let user of users">
+        </thead>
+
+        <tbody>
+ 
+           <tr class="table-primary"  *ngFor="let user of users">
              <td>{{user.userFirstName}}</td>
              <td>{{user.userLastName}}</td>
              <td>{{user.company}}</td>
@@ -23,5 +27,6 @@
             
             
            </tr>
+        </tbody>
          </table>
        </div>

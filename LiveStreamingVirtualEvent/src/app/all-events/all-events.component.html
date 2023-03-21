@@ -1,42 +1,47 @@
-<div class="container mt-5" >
-    <div class="card p-5">
+<div class="container mt-5" style="margin-top: 53px;  
+background-color: rgb(255, 255, 255); /* For browsers that do not support gradients */
+background-image: linear-gradient(to right, rgb(156, 149, 149) , rgb(199, 199, 255));">
+    <div class="card p-5" style="background-color: transparent;" >
       <div class="row" >
         <div class="col-6">
             <h1 style="text-align: center;">All planified events</h1>
           <div class="row">
-            <div class="card border-primary m-2" style="max-width: 15rem;" *ngFor="let inf of events">
+            <div class="card border-primary m-2" style="max-width: 15rem; background-color: rgba(255, 255, 255, 0.507);" *ngFor="let inf of events">
               <div class="card-header">{{inf.eventName}}</div>
               <div class="card-body text-primary">
                 <h4>{{inf.country}}, {{inf.state}}</h4>
                 <h4 class="card-title">{{inf.eventDate | date}} at {{inf.slot}}</h4>
                 <!-- <h5>{{inf.purpose}}</h5> --> 
                 <p>
+
                   <button mat-icon-button color="primary" (click)="eventDescription(inf)">
                     <mat-icon>preview</mat-icon>
                   </button>
+
                   <!-- <button mat-icon-button color="secondary" (click)="editEvent(inf.eventId)">
                     <mat-icon>edit</mat-icon>
                   </button> -->
+
                   <button mat-icon-button color="warn" (click)="deleteEvent(inf.eventId)">
                     <mat-icon>delete</mat-icon>
                   </button>
+
+                  <button mat-icon-button color="primary" (click)="publier(published,inf.eventId)"  >
+                    <mat-icon>visibility</mat-icon>
+                  </button>
+
+                  <button mat-icon-button color="primary" (click)="nonPublier(unpublished, inf.eventId)">
+                    <mat-icon>visibility_off</mat-icon>
+                  </button>
+
                 </p>
-                  <form #eventForm="ngForm" (ngSubmit)="publishEvent(inf.eventId)">
+
+                  <!-- <form #eventForm="ngForm" (ngSubmit)="publishEvent(inf.eventId)">
                     <input type="radio" value="true"  name="publish" [(ngModel)]="event.publish"  id="">Publish
                     <input type="radio" value="false"  name="publish" [(ngModel)]="event.publish"  id="">Unpublish
                     <input type="submit" value="publish"class="btn btn-outline-primary form-control rounded-0"/>
-                  </form>
-                  
+                  </form> -->
 
-                  <!-- <button mat-icon-button color="primary" *ngIf="isPublished" (click)="nonPublier()" >
-                    <mat-icon>visibility</mat-icon>
-                  </button>
-                  <button mat-icon-button color="primary" *ngIf="isPublished == false" (click)="publier()" >
-                    <mat-icon>visibility_off</mat-icon>
-                  </button> -->
-                  
-  
-              
               </div>
             </div>
           </div>
@@ -46,7 +51,7 @@
        
           <h1 style="text-align: center;"> All planified meetings </h1>
           <div class="row">
-            <div class="card border-success m-2" style="max-width: 15rem;" *ngFor="let inf of meetings">
+            <div class="card border-success m-2" style="max-width: 17rem; background-color: rgba(255, 255, 255, 0.507);" *ngFor="let inf of meetings">
               <div class="card-header">{{inf.title}}</div>
               <div class="card-body text-info">
                 <h3>{{inf.meetingDay | date}}</h3>
@@ -65,18 +70,19 @@
                   <button mat-icon-button color="warn" (click)="deleteMeeting(inf.meetingId)">
                     <mat-icon>delete</mat-icon>
                   </button>
+                  <button mat-icon-button color="primary"  (click)="publish(published, inf.meetingId)"  >
+                    <mat-icon>visibility</mat-icon>
+                  </button>
+                  <button mat-icon-button color="primary" (click)="unPublish( unpublished, inf.meetingId)"  >
+                    <mat-icon>visibility_off</mat-icon>
+                  </button>
                 </p>
-                  <form #meetingForm="ngForm" (ngSubmit)="publishMeeting(inf.meetingId)">
+                  <!-- <form #meetingForm="ngForm" (ngSubmit)="publishMeeting(inf.meetingId)">
                     <input type="radio" value="true"  name="publish" [(ngModel)]="meeting.publish"  id="">Publish
                     <input type="radio" value="false"  name="publish" [(ngModel)]="meeting.publish"  id="">Unpublish
                     <input type="submit" value="publish"class="btn btn-outline-primary form-control rounded-0"/>
-                  </form>
-                  <!-- <button mat-icon-button color="primary" >
-                    <mat-icon>visibility</mat-icon>
-                  </button>
-                  <button mat-icon-button color="primary">
-                    <mat-icon>visibility_off</mat-icon>
-                  </button> -->
+                  </form> -->
+                
                 
                 
               </div>

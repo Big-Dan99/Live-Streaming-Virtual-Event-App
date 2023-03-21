@@ -1,10 +1,12 @@
-<div class="container mt-5" >
-  <div class="card p-5">
+<div class="container mt-5" style="margin-top: 53px;  
+background-color: rgb(255, 255, 255); /* For browsers that do not support gradients */
+background-image: linear-gradient(to right, rgb(156, 149, 149) , rgb(199, 199, 255));">
+  <div class="card p-5" style="background-color: transparent;">
     <div class="row" >
-      <div class="col-5">
+      <div  class="col-5">
         <h1>Manage profile</h1>
         <div class="col">
-          <div class="card" style="width: 20rem;">
+          <div class="card" style="width: 20rem; background-color: rgba(255, 255, 255, 0.507);">
             <img src="assets/img/1200px-Breezeicons-actions-22-im-user.svg.png" class="card-img-top" alt="">
             <div class="card-body">
               <h1>{{user.userFirstName}} {{user.userLastName}}</h1>
@@ -20,9 +22,9 @@
         </div>
       </div>
       <div class="col-7">
-        <h1 style="text-align: center;"> Upcoming events</h1>
+        <h1 style=" text-align: center;"> Upcoming events</h1>
         <div class="row">
-          <div class="card border-primary m-2" style="max-width: 17rem;" *ngFor="let inf of events">
+          <div class="card border-primary m-2" style="max-width: 17rem; background-color: rgba(255, 255, 255, 0.507);" *ngFor="let inf of events">
             <div class="card-header">{{inf.eventName}}</div>
             <div class="card-body text-primary">
               <h4>{{inf.country}}, {{inf.state}}</h4>
@@ -46,7 +48,7 @@
         </div>
         <h1 style="text-align: center;"> Upcoming meetings </h1>
         <div class="row">
-          <div class="card border-success m-2" style="max-width: 17rem;" *ngFor="let inf of meetings">
+          <div class="card border-success m-2" style="max-width: 17rem; background-color: rgba(255, 255, 255, 0.432);" *ngFor="let inf of meetings">
             <div class="card-header">{{inf.title}}</div>
             <div class="card-body text-info">
               <h3>{{inf.meetingDay | date}}</h3>

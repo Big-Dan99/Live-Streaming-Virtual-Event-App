@@ -15,8 +15,22 @@
           id="title"
           matInput
           placeholder="title"
-          class=" mb-3"
-        />
+          
+          #title="ngModel"
+              required maxlength="25" minlength="3"
+              
+            />
+            <div *ngIf="title.invalid && (title.dirty || title.touched)"
+                        class="alert">
+        
+                    <div style="color: red;" *ngIf="title.errors?.['required']">
+                      Meeting's title is required.
+                    </div>
+                    <div style="color: red;" *ngIf="title.errors?.['minlength']">
+                      Should be at least 3 characters long.
+                    </div>  
+                    
+                    </div>
               <mat-hint>title</mat-hint> 
             </mat-form-field>
             
@@ -30,8 +44,22 @@
               matInput
               id="description"
               placeholder="description"
-              class=" mb-3"
+             
+              #description="ngModel"
+              required maxlength="200" minlength="10"
+              
             />
+            <div *ngIf="description.invalid && (description.dirty || description.touched)"
+                        class="alert">
+        
+                    <div style="color: red;" *ngIf="description.errors?.['required']">
+                      Meeting's description is required.
+                    </div>
+                    <div style="color: red;" *ngIf="description.errors?.['minlength']">
+                      Should be at least 10 characters long.
+                    </div>  
+                    
+                    </div>
          
               <mat-hint>description</mat-hint> 
             </mat-form-field>
@@ -45,8 +73,22 @@
               id="meetingDay"
               matInput
               placeholder="The meeting day"
-              class=" mb-3"
-            />
+             
+              [min]="today"  [max]="lday" required #meetingDay="ngModel"
+              />
+              <div *ngIf="meetingDay.invalid && (meetingDay.dirty || meetingDay.touched)"
+              class="alert">
+  
+                  <div style="color: red;" *ngIf="meetingDay.errors?.['required']">
+                    Meeting Date is required.
+                  </div>
+                  <div style="color: red;" *ngIf="meetingDay.errors?.max">
+                    Can't schedule after one month
+                  </div>
+                 
+  
+                  
+              </div> 
          
               <mat-hint>meeting day</mat-hint> 
             </mat-form-field>
@@ -61,8 +103,17 @@
               id="startTime"
               matInput
               placeholder="startTime"
-              class=" mb-3"
-            />
+              
+              required #startTime="ngModel"
+              />
+              <div *ngIf="startTime.invalid && (startTime.dirty || startTime.touched)"
+              class="alert">
+    
+                  <div style="color: red;" *ngIf="startTime.errors?.['required']">
+                    Start Time is required.
+                  </div>
+                 
+              </div> 
               <mat-hint>startTime</mat-hint> 
             </mat-form-field>
 
@@ -75,8 +126,17 @@
               id="endTime"
               matInput
               placeholder="endTime"
-              class="mb-3"
-            />
+             
+              required #endTime="ngModel"
+              />
+              <div *ngIf="endTime.invalid && (endTime.dirty || endTime.touched)"
+              class="alert">
+    
+                  <div style="color: red;" *ngIf="endTime.errors?.['required']">
+                      End time required.
+                  </div>
+                 
+              </div> 
          
               <mat-hint>endTime</mat-hint> 
             </mat-form-field>
@@ -90,6 +150,7 @@
            
   
             <input
+            [disabled]="title.invalid || description.invalid || startTime.invalid || endTime.invalid || meetingDay.invalid "
             type="submit"
             value="Schedule meeting"
             class="btn btn-outline-primary form-control rounded-0"

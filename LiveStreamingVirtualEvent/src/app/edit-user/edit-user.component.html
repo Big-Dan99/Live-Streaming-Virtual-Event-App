@@ -1,5 +1,5 @@
-<div class="container mt-5" style="margin-top: 100px;">
-    <div class="card p-5">
+<div class="container mt-5" style="margin-top: 100px; " >
+    <div class="card  p-5" style=" background-color: transparent;">
       <div class="row">
         <div class="col">
           <form #signupForm="ngForm" (ngSubmit)="updateUser()">
@@ -10,7 +10,21 @@
               id="userFirstName"
               placeholder="user FirstName"
               class="form-control mb-3"
+              #fname="ngModel"
+              required maxlength="25" minlength="3"
+             
             />
+            <div *ngIf="fname.invalid && (fname.dirty || fname.touched)"
+                class="alert">
+
+            <div style="color: red;" *ngIf="fname.errors?.['required']">
+                First Name is required.
+            </div>
+            <div style="color: red;" *ngIf="fname.errors?.['minlength']">
+              First Name must be at least 3 characters long.
+            </div>  
+            
+            </div>
    
             <input
               type="text"
@@ -19,7 +33,21 @@
               id="userLastName"
               placeholder="user LastName"
               class="form-control mb-3"
+              #lname="ngModel"
+              required maxlength="15" minlength="3"
+              
             />
+            <div *ngIf="lname.invalid && (lname.dirty || lname.touched)"
+                  class="alert">
+  
+              <div style="color: red;" *ngIf="lname.errors?.['required']">
+                  Last Name is required.
+              </div>
+              <div style="color: red;" *ngIf="lname.errors?.['minlength']">
+                Last Name must be at least 3 characters long.
+              </div>  
+              
+              </div>
   
             <input
               type="text"
@@ -28,7 +56,20 @@
               id="jobposition"
               placeholder="Position in the company"
               class="form-control mb-3"
-            />
+              #jobposition="ngModel"
+              required maxlength="25" minlength="3"
+          />
+          <div *ngIf="jobposition.invalid && (jobposition.dirty || jobposition.touched)"
+                class="alert">
+  
+            <div style="color: red;" *ngIf="jobposition.errors?.['required']">
+                Your job position is required.
+            </div>
+            <div style="color: red;" *ngIf="jobposition.errors?.['minlength']">
+              Should be at least 3 characters long.
+            </div>  
+            
+            </div>
 
             <input
             type="text"
@@ -37,7 +78,21 @@
             id="company"
             placeholder="company"
             class="form-control mb-3"
+            #company="ngModel"
+            required maxlength="25" minlength="3"
+            
           />
+          <div *ngIf="company.invalid && (company.dirty || company.touched)"
+                      class="alert">
+      
+                  <div style="color: red;" *ngIf="company.errors?.['required']">
+                      Company's name is required.
+                  </div>
+                  <div style="color: red;" *ngIf="company.errors?.['minlength']">
+                    Should be at least 3 characters long.
+                  </div>  
+                  
+                  </div>
   
             <!-- <input
               type="text"
@@ -49,9 +104,10 @@
             /> -->
   
             <input
+            [disabled]=" fname.invalid || lname.invalid || company.invalid || jobposition.invalid "
             type="submit"
             value="Edit profile"
-            class="btn btn-outline-primary form-control rounded-0"
+            class="btn btn-outline-secondary form-control rounded-0"
              />
             
           </form>

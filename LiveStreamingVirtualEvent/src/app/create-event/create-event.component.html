@@ -1,7 +1,7 @@
 <div class="container mt-1"  >
-    <div class="p-5" style="width: 70%; margin-left: 25%; height: 60%;" >
+    <div class="p-1" style="width: 70%; margin-left: 18%; height: 60%;" >
       <div class="row" >
-        <div class="col-8">
+        <div class="col">
           <h1 style="text-align: center;">Add new event</h1>
           <form #eventForm="ngForm" (ngSubmit)="addEvent(eventForm)">
            
@@ -16,8 +16,22 @@
               name="eventName"
               id="eventName"
               placeholder="eventName"
-              class=" mb-3"
-            />
+              
+              #Event="ngModel"
+      required maxlength="25" minlength="3"
+      
+    />
+    <div *ngIf="Event.invalid && (Event.dirty || Event.touched)"
+                class="alert">
+
+            <div style="color: red;" *ngIf="Event.errors?.['required']">
+              Event's name is required.
+            </div>
+            <div style="color: red;" *ngIf="Event.errors?.['minlength']">
+              Should be at least 3 characters long.
+            </div>  
+            
+            </div>
               <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
               <mat-hint>Event Name</mat-hint> 
             </mat-form-field>
@@ -33,8 +47,22 @@
               name="purpose"
               id="purpose"
               placeholder="purpose"
-              class="mb-3"
-            />
+              
+              #purpose="ngModel"
+      required maxlength="200" minlength="10"
+      
+    />
+    <div *ngIf="purpose.invalid && (purpose.dirty || purpose.touched)"
+                class="alert">
+
+            <div style="color: red;" *ngIf="purpose.errors?.['required']">
+              purpose is required.
+            </div>
+            <div style="color: red;" *ngIf="purpose.errors?.['minlength']">
+              Should be at least 10 characters long.
+            </div>  
+            
+            </div>
               <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
               <mat-hint>purpose</mat-hint> 
             </mat-form-field>
@@ -48,8 +76,24 @@
               name="eventDate"
               id="eventDate"
               placeholder="event date"
-              class="mb-3"
+              
+              [min]="today"  [max]="lday" required #eventDate="ngModel"
             />
+            <div *ngIf="eventDate.invalid && (eventDate.dirty || eventDate.touched)"
+            class="alert">
+
+                <div style="color: red;" *ngIf="eventDate.errors?.['required']">
+                  Event Date is required.
+                </div>
+                <div style="color: red;" *ngIf="eventDate.errors?.max">
+                  Can't schedule after one month
+                </div>
+                <div style="color: red;" *ngIf="eventDate.errors?.min">
+                  Schedule start today
+                </div>
+
+                
+            </div> 
               <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
               <mat-hint>Event Date</mat-hint> 
             </mat-form-field>
@@ -67,8 +111,17 @@
             name="slot"
             id="slot"
             placeholder="slot"
-            class="mb-3"
+            
+            required #slot="ngModel"
           />
+          <div *ngIf="slot.invalid && (slot.dirty || slot.touched)"
+          class="alert">
+
+              <div style="color: red;" *ngIf="slot.errors?.['required']">
+                  Slot is required.
+              </div>
+             
+          </div> 
             <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
             <mat-hint>slot</mat-hint> 
           </mat-form-field>
@@ -84,8 +137,22 @@
           matInput
           id="city"
           placeholder=" city"
-          class=" mb-3"
-        />
+          
+          #city="ngModel"
+      required maxlength="25" minlength="3"
+      
+    />
+    <div *ngIf="city.invalid && (city.dirty || city.touched)"
+                class="alert">
+
+            <div style="color: red;" *ngIf="city.errors?.['required']">
+              City's name is required.
+            </div>
+            <div style="color: red;" *ngIf="city.errors?.['minlength']">
+              Should be at least 3 characters long.
+            </div>  
+            
+            </div>
           <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
           <mat-hint>city</mat-hint> 
         </mat-form-field>
@@ -99,8 +166,22 @@
         id="state"
         matInput
         placeholder="state"
-        class="mb-3"
-      />
+        
+        #state="ngModel"
+      required maxlength="25" minlength="3"
+      
+    />
+    <div *ngIf="state.invalid && (state.dirty || state.touched)"
+                class="alert">
+
+            <div style="color: red;" *ngIf="state.errors?.['required']">
+              State's name is required.
+            </div>
+            <div style="color: red;" *ngIf="state.errors?.['minlength']">
+              Should be at least 3 characters long.
+            </div>  
+            
+            </div>
           
           <mat-hint>state</mat-hint> 
         </mat-form-field>
@@ -115,15 +196,29 @@
       id="country"
       matInput
       placeholder="country"
-      class="mb-3"
+      
+      #country="ngModel"
+      required maxlength="25" minlength="3"
+      
     />
-       
+    <div *ngIf="country.invalid && (country.dirty || country.touched)"
+                class="alert">
+
+            <div style="color: red;" *ngIf="country.errors?.['required']">
+              Country's name is required.
+            </div>
+            <div style="color: red;" *ngIf="country.errors?.['minlength']">
+              Should be at least 3 characters long.
+            </div>  
+            
+            </div>
         <mat-hint>country</mat-hint> 
       </mat-form-field>
       
       
   
             <input
+            [disabled]="country.invalid || city.invalid || state.invalid || slot.invalid || eventDate.invalid || purpose.invalid || Event.invalid"
             type="submit"
             value="Submit"
             class="btn btn-outline-primary form-control rounded-0"

@@ -10,7 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./createadmin.component.css']
 })
 export class CreateadminComponent implements OnInit {
-
+  mail="^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
   user: User = new User();
   constructor(private us: UserService) { }
 

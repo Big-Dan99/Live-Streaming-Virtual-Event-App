@@ -83,23 +83,55 @@ export class AllEventsComponent implements OnInit {
         desc: meeting.description,
         author: meeting.organizer,
       },
+      
        height:'400px',
         width: '600px'
+        
     });
   }
 
-  isPublished = false;
+  isPublished! : boolean ;
 
-  public publier(){
-    this.isPublished =true;
+  published = true;
+  unpublished = false;
+
+  public publier(publish : any, Id : any){
+    
+      this.es.publishEvent(publish , Id).subscribe((response) => {
+        console.log(response);})
+        console.log(publish);
+        this.isPublished = true;
+    
+    
+      
+    // this.isPublished =true;
   }
 
-  public nonPublier(){
-    this.isPublished =false;
+  public nonPublier(publish : any, Id : any){
+    
+      this.es.publishEvent(publish , Id).subscribe((response) => {
+        console.log(response);})
+        console.log(publish);
+        this.isPublished = false;
+   
+    // this.isPublished =false;
   }
 
-  public publishEvent(eventId : any){
-   this.es.publishEvent(this.event, eventId).subscribe((response) => {
+  public publish(publish : any, Id : any){
+    this.es.publishMeeting(publish , Id).subscribe((response) => {
+      console.log(response);})
+      
+    // this.isPublished =true;
+  }
+  public unPublish(publish : any, Id : any){
+    this.es.publishMeeting(publish , Id).subscribe((response) => {
+      console.log(response);})
+    // this.isPublished =false;
+  }
+
+
+  public publishEvent(publish : boolean, eventId : any){
+   this.es.publishEvent(publish , eventId).subscribe((response) => {
     console.log(response);})
   }
   // public publishEvent(eventId : any, event : Event){

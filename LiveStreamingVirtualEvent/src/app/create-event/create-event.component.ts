@@ -16,6 +16,12 @@ export class CreateEventComponent implements OnInit {
   event: Event = new Event();
   userId = this.uas.getUserId();
 
+  today= new Date().toJSON().split('T')[0];
+  curr = new Date();
+  tom = this.curr.getDate() + 2;
+  first = this.curr.getDate() + 30;
+   lday= new Date(this.curr.setDate(this.first)).toJSON().split('T')[0];
+
   constructor(private es: EventService, private uas: UserAuthService, private route: Router) { }
 
   ngOnInit(): void {

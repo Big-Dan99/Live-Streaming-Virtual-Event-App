@@ -1,5 +1,5 @@
 <div class="container mt-5" style="margin-top: 100px;">
-    <div class="card p-5">
+    <div class="card p-5" style=" background-color: transparent;">
       <div class="row">
         <div class="col">
           <form #eventForm="ngForm" (ngSubmit)="updateEvent()">
@@ -12,7 +12,21 @@
               id="eventName"
               placeholder="eventName"
               class="form-control mb-3"
+              #Event="ngModel"
+              required maxlength="25" minlength="3"
+              
             />
+            <div *ngIf="Event.invalid && (Event.dirty || Event.touched)"
+                        class="alert">
+        
+                    <div style="color: red;" *ngIf="Event.errors?.['required']">
+                      Event's name is required.
+                    </div>
+                    <div style="color: red;" *ngIf="Event.errors?.['minlength']">
+                      Should be at least 3 characters long.
+                    </div>  
+                    
+                    </div>
   
             <input
               type="text"
@@ -21,7 +35,21 @@
               id="purpose"
               placeholder="purpose"
               class="form-control mb-3"
+              #purpose="ngModel"
+              required maxlength="200" minlength="10"
+              
             />
+            <div *ngIf="purpose.invalid && (purpose.dirty || purpose.touched)"
+                        class="alert">
+        
+                    <div style="color: red;" *ngIf="purpose.errors?.['required']">
+                      purpose is required.
+                    </div>
+                    <div style="color: red;" *ngIf="purpose.errors?.['minlength']">
+                      Should be at least 10 characters long.
+                    </div>  
+                    
+                    </div>
   
             <input
               type="date"
@@ -30,7 +58,23 @@
               id="eventDate"
               placeholder="event date"
               class="form-control mb-3"
-            />
+              [min]="today"  [max]="lday" required #eventDate="ngModel"
+              />
+              <div *ngIf="eventDate.invalid && (eventDate.dirty || eventDate.touched)"
+              class="alert">
+  
+                  <div style="color: red;" *ngIf="eventDate.errors?.['required']">
+                    Event Date is required.
+                  </div>
+                  <div style="color: red;" *ngIf="eventDate.errors?.max">
+                    Can't schedule after one month
+                  </div>
+                  <div style="color: red;" *ngIf="eventDate.errors?.min">
+                    Schedule start today
+                  </div>
+  
+                  
+              </div> 
             <input
             type="time"
             [(ngModel)]="event.slot"
@@ -38,7 +82,16 @@
             id="slot"
             placeholder="slot"
             class="form-control mb-3"
-          />
+            required #slot="ngModel"
+            />
+            <div *ngIf="slot.invalid && (slot.dirty || slot.touched)"
+            class="alert">
+  
+                <div style="color: red;" *ngIf="slot.errors?.['required']">
+                    Slot is required.
+                </div>
+               
+            </div> 
           <input
           type="text"
           [(ngModel)]="event.city"
@@ -46,7 +99,21 @@
           id="city"
           placeholder=" city"
           class="form-control mb-3"
+          #city="ngModel"
+          required maxlength="25" minlength="3"
+          
         />
+        <div *ngIf="city.invalid && (city.dirty || city.touched)"
+                    class="alert">
+    
+                <div style="color: red;" *ngIf="city.errors?.['required']">
+                  City's name is required.
+                </div>
+                <div style="color: red;" *ngIf="city.errors?.['minlength']">
+                  Should be at least 3 characters long.
+                </div>  
+                
+                </div>
         <input
         type="text"
         [(ngModel)]="event.state"
@@ -54,7 +121,21 @@
         id="state"
         placeholder="state"
         class="form-control mb-3"
+        #state="ngModel"
+        required maxlength="25" minlength="3"
+        
       />
+      <div *ngIf="state.invalid && (state.dirty || state.touched)"
+                  class="alert">
+  
+              <div style="color: red;" *ngIf="state.errors?.['required']">
+                State's name is required.
+              </div>
+              <div style="color: red;" *ngIf="state.errors?.['minlength']">
+                Should be at least 3 characters long.
+              </div>  
+              
+              </div>
       <input
       type="text"
       [(ngModel)]="event.country"
@@ -62,13 +143,28 @@
       id="country"
       placeholder="country"
       class="form-control mb-3"
+      #country="ngModel"
+      required maxlength="25" minlength="3"
+      
     />
+    <div *ngIf="country.invalid && (country.dirty || country.touched)"
+                class="alert">
+
+            <div style="color: red;" *ngIf="country.errors?.['required']">
+              Country's name is required.
+            </div>
+            <div style="color: red;" *ngIf="country.errors?.['minlength']">
+              Should be at least 3 characters long.
+            </div>  
+            
+            </div>
       
   
             <input
+            [disabled]="country.invalid || city.invalid || state.invalid || slot.invalid || eventDate.invalid || purpose.invalid || Event.invalid"
             type="submit"
             value="Update"
-            class="btn btn-outline-primary form-control rounded-0"
+            class="btn btn-outline-secondary form-control rounded-0"
              />
             
           </form>

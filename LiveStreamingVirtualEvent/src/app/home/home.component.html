@@ -18,15 +18,15 @@
 
 <p id="event"   ></p>
 <!-- events-->
-<section class="projects-section bg-light" >
-   
+<section class="projects-section "  style="background-color: transparent;">
+  <!-- style="background-image: url('assets/img/Screenshot 2023-03-03 170522.png'); min-height: 500px;" -->
     <div class="container mt-5" >
-        <div class="card p-5">
+        <div class=" p-5" style="background-color: transparent;">
           <div class="row" >
             <div class="col-6">
                 <h1 style="text-align: center;">All planified events</h1>
               <div class="row">
-                <div class="card border-primary m-2" style="max-width: 15rem;" *ngFor="let inf of events">
+                <div class="card border-primary m-2" style="max-width: 15rem; background-color: rgba(255, 255, 255, 0.719);" *ngFor="let inf of events">
                   <div class="card-header">{{inf.eventName}}</div>
                   <div class="card-body text-primary">
                     <h4>{{inf.country}}, {{inf.state}}</h4>
@@ -59,9 +59,9 @@
            
               <h1 style="text-align: center;"> All planified meetings </h1>
               <div class="row">
-                <div class="card border-success m-2" style="max-width: 15rem;" *ngFor="let inf of meetings">
+                <div class="card border-success m-2" style="max-width: 15rem;  background-color: rgba(255, 255, 255, 0.719);" *ngFor="let inf of meetings">
                   <div class="card-header">{{inf.title}}</div>
-                  <div class="card-body text-info">
+                  <div class="card-body text-secondary">
                     <h3>{{inf.meetingDay | date}}</h3>
                     <h4>From {{inf.startTime }} to {{inf.endTime}}</h4>
                    
@@ -97,10 +97,12 @@
 
 <!-- About-->
 <p id="about" ></p>
-<section class="about-section text-center" style="background-color: rgb(105, 105, 105);">
+<section class="about-section text-center" style=" min-height: 400px;
+background-color: rgb(171, 221, 255); /* For browsers that do not support gradients */
+background-image: linear-gradient(to right, rgb(93, 118, 231) , rgba(171, 221, 255, 0.836));">
     <div class="container mt-5 px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-lg-8">
+            <div class="col-lg-8" style="padding: 20px;">
                 
                 
                 <h2 class="text-white-50 mx-auto mt-2 mb-5">As virtual events are now acceptable and will continue after COVID-19, being able to live stream and do hybrid events become a business requirement of the future.
@@ -120,40 +122,41 @@
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5">
             <div class="col-md-4 mb-3 mb-md-0">
-                <div class="card py-4 h-100">
+                <div class="card bg py-4 h-100">
                     <div class="card-body text-center">
                         <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-                        <h4 class="text-uppercase m-0">Address</h4>
-                        <hr class="my-4 mx-auto" />
-                        <div class="small text-black-50">Sicap Baobab, boyCapsi, Villa X13 </div>
+                        <h4 class="text-uppercase c m-0">Address</h4>
+                        <hr class="my-4 c mx-auto" />
+                        <div class="small c text-light-50">Sicap Baobab, boyCapsi, Villa X13 </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-3 mb-md-0">
-                <div class="card py-4 h-100">
+                <div class="card bg py-4 h-100">
                     <div class="card-body text-center">
                         <i class="fas fa-envelope text-primary mb-2"></i>
-                        <h4 class="text-uppercase m-0">Email</h4>
-                        <hr class="my-4 mx-auto" />
-                        <div class="small text-black-50"><a href="#!">livestreamingvirtual@event.com</a></div>
+                        <h4 class="text-uppercase c m-0">Email</h4>
+                        <hr class="my-4 c mx-auto" />
+                        <div class="small c text-light-50"><a href="#!">livestreamingvirtual@event.com</a></div>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-3 mb-md-0">
-                <div class="card py-4 h-100">
+                <div class="card bg py-4 h-100">
                     <div class="card-body text-center">
                         <i class="fas fa-mobile-alt text-primary mb-2"></i>
-                        <h4 class="text-uppercase m-0">Phone</h4>
-                        <hr class="my-4 mx-auto" />
-                        <div class="small text-black-50">+221 (77) 836-29-08</div>
+                        <h4 class="text-uppercase c m-0">Phone</h4>
+                        <hr class="my-4 c mx-auto" />
+                        <div class="small c text-light-50">+221 (77) 836-29-08</div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="social d-flex justify-content-center">
-            <a class="mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-            <a class="mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-            <a class="mx-2" href="#!"><i class="fab fa-github"></i></a>
+            <a class="mx-2" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+            <a class="mx-2" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
+            <a class="mx-2" href="https://github.com/"><i class="fab fa-github"></i></a>
         </div>
     </div>
 </section>

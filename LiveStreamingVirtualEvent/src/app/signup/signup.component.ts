@@ -10,6 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+  mail="^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
 
   user: User = new User();
   constructor(private us: UserService) { }
