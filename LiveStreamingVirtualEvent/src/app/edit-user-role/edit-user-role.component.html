@@ -1,0 +1,36 @@
+<div class="container mt-5" style="margin-top: 100px; " >
+    <div class="card  p-5" style=" background-color: transparent;">
+      <div class="row">
+        <div class="col">
+          <form #signupForm="ngForm" (ngSubmit)="updateUserRole()">
+            <label for="">Admin</label>
+            <input
+              type="radio"
+              [(ngModel)]="user.role[0].roleName"
+              value="Admin"
+              name="role"
+              id="role"         
+            />
+            <label for="">Organizer</label>
+            <input
+              type="radio"
+              [(ngModel)]="user.role[0].roleName"
+              value="Organizer"
+              name="role"
+              id="role"         
+            />
+           
+            <input
+           
+            type="submit"
+            value="Edit Role"
+            class="btn btn-outline-secondary form-control rounded-0"
+             />
+            
+          </form>
+        </div>
+       
+    </div>
+  
+  
+

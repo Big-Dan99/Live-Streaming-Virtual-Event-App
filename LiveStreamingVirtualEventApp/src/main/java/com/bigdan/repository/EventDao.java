@@ -16,7 +16,12 @@ public interface EventDao extends JpaRepository<Event, Integer> {
     //    This method is used to find list of event using given  userid which are after current date.
             List<Event> findEventByUser(User user);
 
+    @Query("select e from Event e where e.user.userEmail = ?1")
+            List<Event> findEventByUserId(String userdId);
+
             List<Event> findByPublishTrue();
+
+
 
     @Modifying
     @Query("update Event e set e.publish = :publish where e.eventId = :eventId")

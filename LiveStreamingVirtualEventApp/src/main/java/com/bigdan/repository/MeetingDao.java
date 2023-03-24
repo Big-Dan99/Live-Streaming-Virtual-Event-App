@@ -20,6 +20,9 @@ public interface MeetingDao extends JpaRepository<Meeting, Integer> {
 
     List<Meeting> findByPublishTrue();
 
+    @Query("select m from Meeting m where m.organizer.userEmail = ?1")
+    List<Meeting> findMeetingByUserId(String userdId);
+
     @Modifying
     @Query("update Meeting m set m.publish = :publish where m.meetingId = :meetingId")
     void updatePublishField(@Param("meetingId") Integer eventId, @Param("publish") boolean publish);

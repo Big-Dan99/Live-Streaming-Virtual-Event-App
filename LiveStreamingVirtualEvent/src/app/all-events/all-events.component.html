@@ -26,13 +26,14 @@ background-image: linear-gradient(to right, rgb(156, 149, 149) , rgb(199, 199, 2
                     <mat-icon>delete</mat-icon>
                   </button>
 
-                  <button mat-icon-button color="primary" (click)="publier(published,inf.eventId)"  >
+                  <button mat-icon-button color="primary" *ngIf="isPublished(inf.publish)" (click)="nonPublier(unpublished, inf.eventId)"   >
                     <mat-icon>visibility</mat-icon>
                   </button>
 
-                  <button mat-icon-button color="primary" (click)="nonPublier(unpublished, inf.eventId)">
+                  <button mat-icon-button color="primary" *ngIf="! isPublished(inf.publish)" (click)="publier(published,inf.eventId)" >
                     <mat-icon>visibility_off</mat-icon>
                   </button>
+                 
 
                 </p>
 
@@ -47,7 +48,7 @@ background-image: linear-gradient(to right, rgb(156, 149, 149) , rgb(199, 199, 2
           </div>
         </div>
 
-        <div class="col-6">
+        <div class="col-6"> 
        
           <h1 style="text-align: center;"> All planified meetings </h1>
           <div class="row">
@@ -70,10 +71,10 @@ background-image: linear-gradient(to right, rgb(156, 149, 149) , rgb(199, 199, 2
                   <button mat-icon-button color="warn" (click)="deleteMeeting(inf.meetingId)">
                     <mat-icon>delete</mat-icon>
                   </button>
-                  <button mat-icon-button color="primary"  (click)="publish(published, inf.meetingId)"  >
+                  <button mat-icon-button color="primary" *ngIf="isPublished(inf.publish)" (click)="unPublish( unpublished, inf.meetingId)"   >
                     <mat-icon>visibility</mat-icon>
                   </button>
-                  <button mat-icon-button color="primary" (click)="unPublish( unpublished, inf.meetingId)"  >
+                  <button mat-icon-button color="primary" *ngIf="! isPublished(inf.publish)" (click)="publish(published, inf.meetingId)"  >
                     <mat-icon>visibility_off</mat-icon>
                   </button>
                 </p>

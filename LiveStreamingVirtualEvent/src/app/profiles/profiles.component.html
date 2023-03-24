@@ -10,6 +10,7 @@
              <th>Position in the company</th>
              <th>Email</th>
              <th>Role</th>
+             <th>Delete</th>
              
              
            </tr>
@@ -23,7 +24,16 @@
              <td>{{user.company}}</td>
              <td>{{user.jobposition }}</td>
              <td>{{user.userEmail }}</td>
-             <td>{{user.role[0].roleName}}</td>
+             <td>
+              <button mat-icon-button color="secondary" (click)="editUserole(user.userEmail)">
+                <mat-icon>edit</mat-icon>
+              </button>
+               </td>
+             <td>
+              <button mat-icon-button color="warn" (click)="deleteUser(user.userEmail)">
+                <mat-icon>delete </mat-icon>
+              </button>
+             </td>
             
             
            </tr>

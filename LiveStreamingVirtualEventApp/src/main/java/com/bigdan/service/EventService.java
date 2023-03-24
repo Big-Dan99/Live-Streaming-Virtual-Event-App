@@ -120,6 +120,17 @@ public void deleteEventById(int eventId) {
         eventDao.deleteById(eventId); // delete the event
 
 }
+public void deleteEventsByUserId(String userId){
+    List<Event>  events = eventDao.findEventByUserId(userId); // All related events to this user
+
+     eventDao.deleteAll(events);
+}
+
+    public void deleteMeetingsByUserId(String userId){
+        List<Meeting>  meetings = meetingDao.findMeetingByUserId(userId); // All related meetings to this user
+
+        meetingDao.deleteAll(meetings);
+    }
 
     public void deleteMeetingById(int meetingId) {
 

@@ -18,6 +18,7 @@ import { EventDescriptionComponent } from './event-description/event-description
 import { MeetingDescriptionComponent } from './meeting-description/meeting-description.component';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { AllEventsComponent } from './all-events/all-events.component';
+import { EditUserRoleComponent } from './edit-user-role/edit-user-role.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'schedule-meeting', component: ScheduleMeetingComponent, canActivate:[AuthGuard], data:{roles:['Admin','Organizer']} },
   { path: 'editEvent/:eventid', component: EditEventComponent, canActivate:[AuthGuard], data:{roles:['Admin','Organizer']} },
   { path: 'editUser/:userId', component: EditUserComponent, canActivate:[AuthGuard], data:{roles:['Admin','Organizer']} },
+  { path: 'editUserRole/:userId', component: EditUserRoleComponent, canActivate:[AuthGuard], data:{roles:['Admin']} },
   { path: 'forbidden', component: ForbiddenComponent }
 
   

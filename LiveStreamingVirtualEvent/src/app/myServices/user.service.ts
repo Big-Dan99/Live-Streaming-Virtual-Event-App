@@ -54,6 +54,14 @@ export class UserService {
     return this.httpclient.put(`http://localhost:2809/updateUser/${userId}`, user);
   }
 
+  public updateUserRole( user : User, userId: any) : Observable<Object>{
+    return this.httpclient.put(`http://localhost:2809/updateUserRole/${userId}`, user);
+  }
+
+  public deleteUser(userId: any): Observable<User> {
+    return this.httpclient.delete<User>(`http://localhost:2809/delUser/${userId}`);
+  }
+
   public forUser() {
     return this.httpclient.get(this.PATH_OF_API + '/forUser', {
       responseType: 'text',
@@ -65,6 +73,10 @@ export class UserService {
     return this.httpclient.get(this.PATH_OF_API + '/forAdmin', {
       responseType: 'text',
     });
+  }
+
+  public addFile(file: FormData) {
+    return this.httpclient.post('http://localhost:2809/addNewFile', file);
   }
 
   public roleMatch(allowedRoles: string | any[]): any {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../myServices/user.service';
 import { User } from '../myClasses/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profiles',
@@ -9,7 +10,7 @@ import { User } from '../myClasses/user';
 })
 export class ProfilesComponent implements OnInit {
 
-  constructor(private us: UserService) { }
+  constructor(private us: UserService, private route: Router) { }
 
   users! : User[] ;
   ngOnInit(): void {
@@ -22,6 +23,20 @@ export class ProfilesComponent implements OnInit {
       
       this.users = resp;
     }) 
+  }
+
+  public editUserole(userId: any){
+    
+      this.route.navigate(['/editUserRole',userId]);
+
+  }
+
+  public deleteUser(userId: any){
+    
+    this.us.deleteUser(userId).subscribe((response) => {
+      console.log(response);
+    })
+      window.location.reload();
   }
 
 }

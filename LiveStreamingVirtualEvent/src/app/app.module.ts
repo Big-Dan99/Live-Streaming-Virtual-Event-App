@@ -34,6 +34,7 @@ import { EventDescriptionComponent } from './event-description/event-description
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { AllEventsComponent } from './all-events/all-events.component';
 import { ProfilesComponent } from './profiles/profiles.component';
+import { EditUserRoleComponent } from './edit-user-role/edit-user-role.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { ProfilesComponent } from './profiles/profiles.component';
     MeetingDescriptionComponent,
     EventDescriptionComponent,
     AllEventsComponent,
-    ProfilesComponent
+    ProfilesComponent,
+    EditUserRoleComponent
   ],
   imports: [
     BrowserModule,

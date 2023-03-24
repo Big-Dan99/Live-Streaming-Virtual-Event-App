@@ -26,6 +26,7 @@ export class AllEventsComponent implements OnInit {
     this.getAllEvent(); 
     this.getAllMeeting();
     
+    
   }
 
   public getAllEvent(){
@@ -90,21 +91,31 @@ export class AllEventsComponent implements OnInit {
     });
   }
 
-  isPublished! : boolean ;
+  public isPublished(publish : boolean) : boolean{
+    if (publish == true) {
+      return true;
+      
+    } else {
+      return false;
+    }
+  }
+
 
   published = true;
   unpublished = false;
+
+  
+
+  //  Publish or unpublish event
 
   public publier(publish : any, Id : any){
     
       this.es.publishEvent(publish , Id).subscribe((response) => {
         console.log(response);})
         console.log(publish);
-        this.isPublished = true;
-    
-    
-      
-    // this.isPublished =true;
+        window.location.reload();
+     
+ 
   }
 
   public nonPublier(publish : any, Id : any){
@@ -112,36 +123,40 @@ export class AllEventsComponent implements OnInit {
       this.es.publishEvent(publish , Id).subscribe((response) => {
         console.log(response);})
         console.log(publish);
-        this.isPublished = false;
-   
-    // this.isPublished =false;
+        window.location.reload();
+     
   }
+
+
+
+
+// Publish or unpublish meeting
 
   public publish(publish : any, Id : any){
     this.es.publishMeeting(publish , Id).subscribe((response) => {
       console.log(response);})
-      
-    // this.isPublished =true;
+      window.location.reload();
+    
   }
   public unPublish(publish : any, Id : any){
     this.es.publishMeeting(publish , Id).subscribe((response) => {
       console.log(response);})
-    // this.isPublished =false;
+      window.location.reload();
   }
 
 
-  public publishEvent(publish : boolean, eventId : any){
-   this.es.publishEvent(publish , eventId).subscribe((response) => {
-    console.log(response);})
-  }
-  // public publishEvent(eventId : any, event : Event){
+  // public publishEvent(publish : boolean, eventId : any){
+  //  this.es.publishEvent(publish , eventId).subscribe((response) => {
+  //   console.log(response);})
+  // }
+  // // public publishEvent(eventId : any, event : Event){
   //   this.es.publishEvent(event, eventId).subscribe((response) => {
   //    console.log(response);})
   //  }
-  public publishMeeting(meetingId : any){
-    this.es.publishMeeting(this.meeting, meetingId).subscribe((response) => {
-     console.log(response);})
-   }
+  // public publishMeeting(meetingId : any){
+  //   this.es.publishMeeting(this.meeting, meetingId).subscribe((response) => {
+  //    console.log(response);})
+  //  }
 
  
   
