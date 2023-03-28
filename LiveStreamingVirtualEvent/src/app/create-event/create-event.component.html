@@ -214,6 +214,35 @@
             </div>
         <mat-hint>country</mat-hint> 
       </mat-form-field>
+
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Event link</mat-label>
+        <input
+      type="text"
+      [(ngModel)]="event.eventLink"
+      name="eventLink"
+      id="eventLink"
+      matInput
+      placeholder="eventLink"
+      
+      #eventLink="ngModel"
+    required  minlength="10"
+    
+  />
+  <div *ngIf="eventLink.invalid && (eventLink.dirty || eventLink.touched)"
+              class="alert">
+
+          <div style="color: red;" *ngIf="eventLink.errors?.['required']">
+            Event's link is required.
+          </div>
+          <div style="color: red;" *ngIf="eventLink.errors?.['minlength']">
+            Should be at least 10 characters long.
+          </div>  
+          
+          </div>
+        
+        <mat-hint>eventLink</mat-hint> 
+      </mat-form-field>
       
       
   

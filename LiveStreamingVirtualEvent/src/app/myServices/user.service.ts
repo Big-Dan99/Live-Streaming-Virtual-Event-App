@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { UserAuthService } from './user-auth.service';
 import { User } from '../myClasses/user';
 import { Observable } from 'rxjs';
+import { Attender } from '../myClasses/attender';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,22 @@ export class UserService {
       headers: this.requestHeader, responseType: 'blob'
      }  );
   }
+ 
+  public joinEvent(attender: Attender, eventId : any) :  Observable<any>{
+   
+    return this.httpclient.post( `http://localhost:2809/registerNewAttender/${eventId}` , attender , {
+      headers: this.requestHeader, responseType: 'blob'
+     }  );
+  }
+
+// public joinEvents(attender: Attender) :  Observable<any>{
+   
+//     return this.httpclient.post( 'http://localhost:2809/registerNewAttender' , attender , {
+//       headers: this.requestHeader, responseType: 'blob'
+//      }  );
+//   }  
+
+
   // createUser(user : User): Observable<any>{
   //   return this.http.post('http://localhost:8080/user/saveUser',user ); 
           

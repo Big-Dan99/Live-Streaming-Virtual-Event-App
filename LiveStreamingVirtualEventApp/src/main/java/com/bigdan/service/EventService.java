@@ -1,9 +1,7 @@
 package com.bigdan.service;
 
-import com.bigdan.entity.Event;
-import com.bigdan.entity.Meeting;
-import com.bigdan.entity.Role;
-import com.bigdan.entity.User;
+import com.bigdan.entity.*;
+import com.bigdan.repository.AttenderDao;
 import com.bigdan.repository.EventDao;
 import com.bigdan.repository.MeetingDao;
 import com.bigdan.repository.UserDao;
@@ -27,6 +25,50 @@ public class EventService {
 
     @Autowired
     MailNotif mailNotif;
+
+    @Autowired
+    private AttenderDao attenderDao;
+
+//    public String joinEvent(Attender attender, Integer eventId){
+//
+//        registerNewAttender(attender);
+//        Event event = eventDao.findById(eventId).orElseThrow(()-> new IllegalArgumentException("Invalid eventId"));
+//
+//        if (event != null) {
+////            event.setEventName(event.getEventName());
+////            event.setPurpose(event.getPurpose());
+////            event.setEventDate(event.getEventDate());
+////            event.setSlot(event.getSlot());
+////            event.setCity(event.getCity());
+////            event.setState(event.getState());
+////            event.setCountry(event.getCountry());
+////            event.setPublish(event.isPublish());
+////            event.setEventLink(event.getEventLink());
+//
+//            Set<Attender> attenders = new HashSet<>();
+//            attenders.add(attender);
+//            event.setAttender(attenders);
+//            mailNotif.sendJoinEventEmail(attender.getAttenderEmail(), eventId, attender.getAttenderFirstName(), attender.getAttenderLastName(), event.getEventName(),event.getEventDate(),event.getEventLink());
+//            // Update other fields as needed
+//            eventDao.save(event);
+//            return attender.getAttenderEmail();
+//        }
+//
+//            return null;
+//
+//
+//    }
+
+    public String registerNewAttender(Attender attender) {
+
+        attenderDao.save(attender);
+//        mailNotif.sendJoinEventEmail(attender.getAttenderEmail(), eventId, attender.getAttenderFirstName(), attender.getAttenderLastName(), event.getEventName(),event.getEventDate(),event.getEventLink());
+        return attender.getAttenderEmail();
+
+//        }
+
+
+    }
 
     public String addNewEvent(Event event, String userId){
         User user = userDao.findById(userId).orElseThrow(()-> new IllegalArgumentException("Invalid userId"));
@@ -148,6 +190,7 @@ public void deleteEventsByUserId(String userId){
             existingEvent.setState(event.getState());
             existingEvent.setCountry(event.getCountry());
             existingEvent.setPublish(event.isPublish());
+            existingEvent.setEventLink(event.getEventLink());
             // Update other fields as needed
              eventDao.save(existingEvent);
              return existingEvent.getEventName();

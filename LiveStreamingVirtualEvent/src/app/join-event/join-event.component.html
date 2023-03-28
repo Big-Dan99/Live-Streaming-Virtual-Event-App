@@ -1,0 +1,167 @@
+<div
+  class="container-fluid"
+  style="
+    margin-top: 53px;
+    min-height: 770px;
+    background-color: rgb(
+      123,
+      177,
+      228
+    ); /* For browsers that do not support gradients */
+    background-image: linear-gradient(
+      to right,
+      rgb(203, 219, 243),
+      rgb(123, 177, 228)
+    );
+  "
+>
+  <div class="container mt-1">
+    <div
+      class="p-5"
+      style="width: 70%; margin-left: 18%; height: 60%"
+      *ngIf="!submitted"
+    >
+      <h1 style="text-align: center">Sign up</h1>
+      <div class="row">
+        <div class="col">
+          <form #signupAttender="ngForm" (ngSubmit)="signup(signupAttender)">
+            <mat-form-field appearance="outline" style="width: 100%">
+              <mat-label>First Name</mat-label>
+              <input
+                type="text"
+                [(ngModel)]="attender.attenderFirstName"
+                name="attenderFirstName"
+                id="attenderFirstName"
+                matInput
+                placeholder="Attender FirstName"
+                #fname="ngModel"
+                required
+                maxlength="25"
+                minlength="3"
+              />
+              <div
+                *ngIf="fname.invalid && (fname.dirty || fname.touched)"
+                class="alert"
+              >
+                <div style="color: red" *ngIf="fname.errors?.['required']">
+                  First Name is required.
+                </div>
+                <div style="color: red" *ngIf="fname.errors?.['minlength']">
+                  First Name must be at least 3 characters long.
+                </div>
+              </div>
+              <mat-hint>FirstName</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="width: 100%">
+              <mat-label>Last Name</mat-label>
+              <input
+                type="text"
+                [(ngModel)]="attender.attenderLastName"
+                name="attenderLastName"
+                id="attenderLastName"
+                matInput
+                placeholder="Attender LastName"
+                #lname="ngModel"
+                required
+                maxlength="15"
+                minlength="3"
+              />
+              <div
+                *ngIf="lname.invalid && (lname.dirty || lname.touched)"
+                class="alert"
+              >
+                <div style="color: red" *ngIf="lname.errors?.['required']">
+                  Last Name is required.
+                </div>
+                <div style="color: red" *ngIf="lname.errors?.['minlength']">
+                  Last Name must be at least 3 characters long.
+                </div>
+              </div>
+              <mat-hint>LastName</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="width: 100%">
+              <mat-label>Email</mat-label>
+              <input
+                type="text"
+                [(ngModel)]="attender.attenderEmail"
+                name="attenderEmail"
+                id="attenderEmail"
+                matInput
+                placeholder="Attender Email"
+                [pattern]="mail"
+                #Email="ngModel"
+              />
+              <div
+                *ngIf="Email.invalid && (Email.dirty || Email.touched)"
+                class="alert"
+              >
+                <div style="color: red" *ngIf="Email.errors?.['required']">
+                  Email is required.
+                </div>
+                <div style="color: red" *ngIf="Email.errors?.pattern">
+                  Please enter a valid email
+                </div>
+              </div>
+              <mat-hint>Email</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="width: 100%">
+              <mat-label>Your Goal</mat-label>
+              <input
+                type="text"
+                [(ngModel)]="attender.attenderGoal"
+                name="attenderGoal"
+                id="attenderGoal"
+                matInput
+                placeholder="Why you want to join this event ?"
+                #jobposition="ngModel"
+                required
+                maxlength="25"
+                minlength="3"
+              />
+              <div
+                *ngIf="
+                  jobposition.invalid &&
+                  (jobposition.dirty || jobposition.touched)
+                "
+                class="alert"
+              >
+                <div
+                  style="color: red"
+                  *ngIf="jobposition.errors?.['required']"
+                >
+                  Your goal is required.
+                </div>
+                <div
+                  style="color: red"
+                  *ngIf="jobposition.errors?.['minlength']"
+                >
+                  Should be at least 3 characters long.
+                </div>
+              </div>
+              <mat-hint>attenderGoal</mat-hint>
+            </mat-form-field>
+
+            <input
+              [disabled]="
+                Email.invalid ||
+                fname.invalid ||
+                lname.invalid ||
+                jobposition.invalid
+              "
+              type="submit"
+              value="Join event"
+              class="btn btn-outline-primary form-control rounded-0"
+            />
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="submitted">
+      Register succesfully you will receive a link by email to join this event
+    </div>
+  </div>
+</div>

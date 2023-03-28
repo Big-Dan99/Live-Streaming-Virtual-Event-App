@@ -6,6 +6,7 @@ import { EventDescriptionComponent } from '../event-description/event-descriptio
 import { MatDialog } from '@angular/material/dialog';
 import { Meeting } from '../myClasses/meeting';
 import { MeetingDescriptionComponent } from '../meeting-description/meeting-description.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ import { MeetingDescriptionComponent } from '../meeting-description/meeting-desc
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  constructor(private es: EventService, public dialog: MatDialog) { }
+  constructor(private es: EventService, public dialog: MatDialog, private route: Router) { }
 
   events! : Event[] ;
   meetings! : Meeting[];
@@ -34,6 +35,11 @@ export class HomeComponent implements OnInit {
        height:'400px',
         width: '600px'
     });
+  }
+
+  public registerAttender(eventId:  any){
+     
+    this.route.navigate(['/joinEvent',eventId]);
   }
 
   public meetingDescription(meeting: Meeting ) {

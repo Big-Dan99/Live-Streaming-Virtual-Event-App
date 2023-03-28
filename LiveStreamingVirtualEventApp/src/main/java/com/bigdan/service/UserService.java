@@ -1,19 +1,15 @@
 package com.bigdan.service;
 
 
-import com.bigdan.entity.Event;
-import com.bigdan.entity.Meeting;
-import com.bigdan.entity.Role;
-import com.bigdan.entity.User;
-import com.bigdan.repository.EventDao;
-import com.bigdan.repository.MeetingDao;
-import com.bigdan.repository.RoleDao;
-import com.bigdan.repository.UserDao;
+import com.bigdan.entity.*;
+import com.bigdan.repository.*;
+import com.bigdan.util.MailNotif;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,10 +18,15 @@ import java.util.Set;
 @Service
 public class UserService {
 
-    EntityManager entityManager;
+//    EntityManager entityManager;
 
     @Autowired
+    MailNotif mailNotif;
+    @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private AttenderDao attenderDao;
 
     @Autowired
     private RoleDao roleDao;
@@ -43,7 +44,7 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     public void initRoleAndUser() {
- 
+
         Role adminRole = new Role();
         adminRole.setRoleName("Admin");
         adminRole.setRoleDescription("Admin role");
@@ -89,6 +90,8 @@ public class UserService {
         userDao.save(user);
         return user.getUserEmail();
     }
+
+
     public String registerNewAdmin(User user) {
         Role role = roleDao.findById("Admin").get();
         Set<Role> userRoles = new HashSet<>();
@@ -101,77 +104,98 @@ public class UserService {
     }
 
 
-    public User getUserProfile(String userId){
-        User user = userDao.findById(userId).get();
-        return user;
-    }
+    public String registerNewAttender(Attender attender, Integer eventId) {
 
-    public String updateUser(User user) {
-        User existingUser = userDao.findById(user.getUserEmail()).orElse(null);
-        if (existingUser != null) {
-            existingUser.setUserFirstName(user.getUserFirstName());
-            existingUser.setUserLastName(user.getUserLastName());
-            existingUser.setJobposition(user.getJobposition());
-            existingUser.setCompany(user.getCompany());
-            existingUser.setUserPassword(user.getUserPassword());
 
-            // Update other fields as needed
-            userDao.save(existingUser);
-            return existingUser.getUserEmail();
+        Event event = eventDao.findById(eventId).orElseThrow(() -> new IllegalArgumentException("Invalid eventId"));
+//        Set<Event> events = new HashSet<>();
+//        events.add(event);
+        attender.setEvent(event);
+
+        Attender attender1 = attenderDao.findAttenderByEventAndAttenderEmail(event, attender.getAttenderEmail());
+
+        if (attender1 != null) {
+            return "You already join this event";
+        } else {
+            attenderDao.save(attender);
+            mailNotif.sendJoinEventEmail(attender.getAttenderEmail(), eventId, attender.getAttenderFirstName(), attender.getAttenderLastName(), event.getEventName(), event.getEventDate(), event.getEventLink());
+            return attender.getAttenderEmail();
+
         }
-        return null;
-    }
 
-    public String updateUserRole(User user) {
 
-        User existingUser = userDao.findById(user.getUserEmail()).orElse(null);
-        if (existingUser != null) {
+        }
+
+        public User getUserProfile (String userId){
+            User user = userDao.findById(userId).get();
+            return user;
+        }
+
+        public String updateUser (User user){
+            User existingUser = userDao.findById(user.getUserEmail()).orElse(null);
+            if (existingUser != null) {
+                existingUser.setUserFirstName(user.getUserFirstName());
+                existingUser.setUserLastName(user.getUserLastName());
+                existingUser.setJobposition(user.getJobposition());
+                existingUser.setCompany(user.getCompany());
+                existingUser.setUserPassword(user.getUserPassword());
+
+                // Update other fields as needed
+                userDao.save(existingUser);
+                return existingUser.getUserEmail();
+            }
+            return null;
+        }
+
+        public String updateUserRole (User user){
+
+            User existingUser = userDao.findById(user.getUserEmail()).orElse(null);
+            if (existingUser != null) {
 //            existingUser.setUserFirstName(user.getUserFirstName());
 //            existingUser.setUserLastName(user.getUserLastName());
 //            existingUser.setJobposition(user.getJobposition());
 //            existingUser.setCompany(user.getCompany());
 //            existingUser.setUserPassword(user.getUserPassword());
-            existingUser.setRole(user.getRole());
+                existingUser.setRole(user.getRole());
 //            Set<Role> userRoles = new HashSet<>();
 //            userRoles.add(existingUser.getRole());
 //            user.setRole(userRoles);
 
-            // Update other fields as needed
-            userDao.save(existingUser);
-            return existingUser.getUserEmail();
+                // Update other fields as needed
+                userDao.save(existingUser);
+                return existingUser.getUserEmail();
+            }
+            return null;
         }
-        return null;
-    }
 
-    public void deleteUserById(String userId) {
+        public void deleteUserById (String userId){
 
 //        eventService.deleteEventsByUserId(userId);
 //        eventService.deleteMeetingsByUserId(userId);
 
-            List<Event>  events = eventDao.findEventByUserId(userId); // All related events to this user
+            List<Event> events = eventDao.findEventByUserId(userId); // All related events to this user
             List<Meeting> meetings = meetingDao.findMeetingByUserId(userId); // All related meetings to this user
 
             events.clear();  // remove all these events
             meetings.clear(); // remove all these meetings
 
 
-
 //        eventDao.deleteAll(events);
 //        meetingDao.deleteAll(meetings);
 
-        User user = userDao.findById(userId).get();
+            User user = userDao.findById(userId).get();
 
-        user.getRole().clear(); // remove all associated roles
-        userDao.deleteById(userId); // delete user
+            user.getRole().clear(); // remove all associated roles
+            userDao.deleteById(userId); // delete user
 
 
+        }
+
+        public List<User> getAllUser () {
+            return userDao.findAll();
+        }
+
+        public String getEncodedPassword (String password){
+            return passwordEncoder.encode(password);
+        }
     }
-
-    public List<User> getAllUser(){
-        return userDao.findAll();
-    }
-
-    public String getEncodedPassword(String password) {
-        return passwordEncoder.encode(password);
-    }
-}

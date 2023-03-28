@@ -120,6 +120,31 @@ public class MailNotif {
 
     }
 
+    public void sendJoinEventEmail(String email, int eventId, String fname, String lname,String eventName,
+                                          LocalDate eventDate, String eventLink) {
+        logger.info("Inside sendEmail2() method of {}", this.getClass());
+        quickService.submit(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    SimpleMailMessage msg = new SimpleMailMessage();
+                    msg.setTo(email);
+                    msg.setSubject(
+                            "Succesfull registration to event with  id " + eventId);
+                    msg.setText("Dear " + fname +" "+ lname  + "\n You registration to "+ eventName+" is done ."+ " \n" +
+                            " you can  join the event on "
+                            +  eventDate
+                            + " Here is the event link "+eventLink +"\n \n \nThanks and Regards \nLife streaming virtual event ");
+                    javaMailSender.send(msg);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+    }
+
 
 
     }

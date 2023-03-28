@@ -11,6 +11,7 @@ export class Event {
     state! : string;
     country! : string;
     publish! : boolean;
+    eventLink! : string;
     user! : User;
    
 }

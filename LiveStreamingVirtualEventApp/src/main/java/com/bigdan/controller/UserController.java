@@ -1,6 +1,7 @@
 package com.bigdan.controller;
 
 
+import com.bigdan.entity.Attender;
 import com.bigdan.entity.Event;
 import com.bigdan.entity.File;
 import com.bigdan.entity.User;
@@ -53,6 +54,14 @@ public class UserController {
             response = userService.registerNewUser(user);
             return ResponseEntity.ok(response);
         }
+
+    }
+
+    @PostMapping({"/registerNewAttender/{eventId}"})
+    public ResponseEntity<String> registerNewAttender( @RequestBody Attender attender, @PathVariable Integer eventId) {
+        String response = userService.registerNewAttender(attender,eventId);
+            return ResponseEntity.ok(response);
+
 
     }
 

@@ -1,5 +1,6 @@
 package com.bigdan.controller;
 
+import com.bigdan.entity.Attender;
 import com.bigdan.entity.Event;
 import com.bigdan.entity.Meeting;
 import com.bigdan.entity.User;
@@ -20,6 +21,22 @@ public class EventController {
 
     @Autowired
     private EventService eventService;
+
+//        @PostMapping({"/registerNewAttender/{eventId}"})
+//    public ResponseEntity<String> registerNewAttender(@RequestBody Attender attender, @PathVariable Integer eventId) {
+//        String response = eventService.joinEvent(attender,eventId);
+//            return ResponseEntity.ok(response);
+//
+//
+//    }
+
+//    @PostMapping({"/registerNewAttender"})
+//    public ResponseEntity<String> registerNewAttender(@RequestBody Attender attender) {
+//        String response = eventService.registerNewAttender(attender);
+//        return ResponseEntity.ok(response);
+//
+//
+//    }
 
     @PostMapping({"/addNewEvent/{userId}"})
     @PreAuthorize("hasAnyRole('Admin','Organizer')")

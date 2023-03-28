@@ -49,6 +49,23 @@ public class Event {
             }
     )
     private User user;
+
+//    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JoinTable(name = "EVENT_ATTENDER",
+//            joinColumns = {
+//                    @JoinColumn(name = "EVENT_ID")
+//            },
+//            inverseJoinColumns = {
+//                    @JoinColumn(name = "ATTENDER_ID")
+//            }
+//    )
+//    private Set<Attender> attender;
+
+    @Column(nullable = false, unique = true)
+    private String eventLink;
+
+
+
     public Event() {
     }
 
@@ -70,6 +87,14 @@ public class Event {
         this.state = state;
         this.country = country;
     }
+
+//    public Set<Attender> getAttender() {
+//        return attender;
+//    }
+//
+//    public void setAttender(Set<Attender> attender) {
+//        this.attender = attender;
+//    }
 
     public Integer getEventId() {
         return eventId;
@@ -142,4 +167,14 @@ public class Event {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public String getEventLink() {
+        return eventLink;
+    }
+
+    public void setEventLink(String eventLink) {
+        this.eventLink = eventLink;
+    }
+
+
 }
